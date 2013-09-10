@@ -1,0 +1,3 @@
+<?php
+//000000000000d3608ba1acd9228de0f1c0f187c6616aa:3:{s:9:"CacheData";a:17:{i:0;s:8:"topic_id";i:1;s:10:"topic_name";i:2;s:5:"count";i:3;s:5:"ctime";i:4;s:6:"status";i:5;s:4:"lock";i:6;s:6:"domain";i:7;s:9:"recommend";i:8;s:14:"recommend_time";i:9;s:3:"des";i:10;s:7:"outlink";i:11;s:3:"pic";i:12;s:7:"essence";i:13;s:4:"note";i:14;s:10:"topic_user";s:8:"_autoinc";b:1;s:3:"_pk";s:8:"topic_id";}s:10:"CacheMtime";i:1378299458;s:11:"CacheExpire";s:2:"-1";}
+?>

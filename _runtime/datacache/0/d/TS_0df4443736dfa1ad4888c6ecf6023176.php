@@ -1,0 +1,3 @@
+<?php
+//000000000000b5b4ebf8c2122ef7209afdf6e7b28726a:3:{s:9:"CacheData";a:3:{s:6:"credit";a:2:{s:10:"experience";a:2:{s:5:"value";i:1;s:5:"alias";s:6:"经验";}s:5:"score";a:2:{s:5:"value";i:202;s:5:"alias";s:6:"财富";}}s:10:"creditType";a:2:{s:10:"experience";s:6:"经验";s:5:"score";s:6:"财富";}s:5:"level";a:9:{s:5:"level";i:1;s:4:"name";s:12:"初学乍练";s:5:"image";s:10:"level1.png";s:5:"start";s:1:"0";s:3:"end";s:4:"1000";s:10:"level_type";s:10:"experience";s:8:"nextNeed";i:999;s:8:"nextName";s:12:"登堂入室";s:3:"src";s:74:"http://localhost/thinksns/addons/theme/stv1/_static/image/level/level1.png";}}s:10:"CacheMtime";i:1378805653;s:11:"CacheExpire";i:604800;}
+?>

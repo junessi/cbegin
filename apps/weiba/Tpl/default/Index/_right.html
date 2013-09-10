@@ -1,0 +1,29 @@
+<div id="col3" class="st-index-right">
+  <div class="right-wrap">
+     <div class="right-box clearfix">
+       <h3><a href="{:U('weiba/Index/weibaList')}" class="right">更多微吧</a>微吧推荐</h3>
+       <ul>
+          <volist name="weiba_recommend" id="vo">
+            <li>
+                <a href="{:U('weiba/Index/detail',array('weiba_id'=>$vo['weiba_id']))}" class="face"><img src="{$vo.logo|getImageUrl=###, 50, 50, true}" /><span>{$vo.weiba_name}</span></a>
+            </li>
+          </volist>
+       </ul>
+     </div>  
+     <div class="rank-box1">
+       <h3>微吧排行榜</h3>
+       <ul>
+          <volist name="weiba_order" id="v1">
+              <li><i class="ico-num ico-num{$i}"></i>
+                  <dl>
+                     <dt><a href="{:U('weiba/Index/detail',array('weiba_id'=>$v1['weiba_id']))}"><img src="{$v1.logo|getImageUrl=###, 30, 30, true}" width="30" height="30" /></a></dt>
+                     <dd><p><a href="{:U('weiba/Index/detail',array('weiba_id'=>$v1['weiba_id']))}">{$v1.weiba_name}</a></p><p>粉丝数：{$v1.follower_count|default=0}　帖子数：{$v1.thread_count|default=0}</p></dd>
+                  </dl>
+              </li>
+          </volist>
+       </ul>
+     </div>
+    <!-- 微吧首页右下广告 -->
+    {:Addons::hook('show_ad_space', array('place'=>'weiba_right'))}
+  </div>
+</div>

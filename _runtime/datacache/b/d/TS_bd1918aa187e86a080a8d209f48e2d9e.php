@@ -1,5 +1,0 @@
-<?php
-//00000000000071eb120177cc121d0506fdaab0b186b4a:3:{s:9:"CacheData";a:29:{s:7:"feed_id";s:1:"1";s:3:"uid";s:1:"2";s:4:"type";s:4:"post";s:3:"app";s:6:"public";s:13:"app_row_table";s:4:"feed";s:10:"app_row_id";s:1:"0";s:12:"publish_time";s:10:"1378299542";s:6:"is_del";s:1:"0";s:4:"from";s:1:"0";s:13:"comment_count";s:1:"0";s:12:"repost_count";s:1:"0";s:17:"comment_all_count";s:1:"0";s:10:"digg_count";s:1:"0";s:9:"is_repost";s:1:"0";s:8:"is_audit";s:1:"1";s:9:"client_ip";s:7:"0.0.0.0";s:12:"feed_content";s:3:"hi
-";s:9:"from_data";N;s:5:"ctime";s:16:"2013-09-04 20:59";s:7:"content";s:3:"hi
-";s:5:"uname";s:7:"Cricket";s:10:"user_group";a:0:{}s:10:"avatar_big";s:74:"http://localhost/thinksns/addons/theme/stv1/_static/image/noavatar/big.jpg";s:13:"avatar_middle";s:77:"http://localhost/thinksns/addons/theme/stv1/_static/image/noavatar/middle.jpg";s:12:"avatar_small";s:76:"http://localhost/thinksns/addons/theme/stv1/_static/image/noavatar/small.jpg";s:10:"has_attach";i:0;s:8:"feedType";s:4:"post";s:11:"source_body";s:2:"hi";s:10:"api_source";N;}s:10:"CacheMtime";i:1378299542;s:11:"CacheExpire";i:60;}
-?>

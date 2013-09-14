@@ -1,3 +1,0 @@
-<?php if (!defined('THINK_PATH')) exit();?><?php if(($coll)  ==  ""): ?><a href="javascript:;" onclick="core.plugInit('collection',this,'<?php echo ($type); ?>','<?php echo ($sid); ?>','<?php echo ($stable); ?>','<?php echo ($sapp); ?>')" rel="add"><?php echo L('PUBLIC_STREAM_LIKE');?></a>
-<?php else: ?>
-<a href="javascript:;" onclick="core.plugInit('collection',this,'<?php echo ($type); ?>','<?php echo ($sid); ?>','<?php echo ($stable); ?>','<?php echo ($sapp); ?>')" rel="remove"><?php echo L('PUBLIC_CANCEL_FAVORITE');?></a><?php endif; ?>

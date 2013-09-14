@@ -1,3 +1,0 @@
-<?php
-//000000000000fe33331b115e1a32622e4e4e22af1f0fa:3:{s:9:"CacheData";a:2:{s:4:"core";a:1:{s:6:"normal";a:10:{s:9:"feed_post";s:1:"1";s:9:"read_data";s:1:"1";s:11:"invite_user";s:1:"1";s:12:"send_message";s:1:"1";s:11:"search_info";s:1:"1";s:11:"comment_del";s:1:"1";s:12:"feed_comment";s:1:"1";s:11:"feed_report";s:1:"1";s:10:"feed_share";s:1:"1";s:8:"feed_del";s:1:"1";}}s:5:"weiba";a:1:{s:6:"normal";a:6:{s:10:"weiba_post";s:1:"1";s:11:"weiba_reply";s:1:"1";s:9:"weiba_del";s:1:"1";s:15:"weiba_del_reply";s:1:"1";s:10:"weiba_edit";s:1:"1";s:18:"weiba_apply_manage";s:1:"1";}}}s:10:"CacheMtime";i:1378805523;s:11:"CacheExpire";i:600;}
-?>

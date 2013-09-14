@@ -1,0 +1,45 @@
+<include file="__THEME__/public_header" />
+
+    <div id="page-wrap">
+        <div id="main-wrap">
+            <div id="st-index-grid" class="st-grid">
+                <div id="col8" class="st-section boxShadow content-bg">
+                    <include file="__THEME__/public_right" />
+                    <div id="col5" class="st-index-main">
+                    <div class="extend-foot">
+                    <!--tab menu-->
+                    <div class="feed-nav clearfix">
+                        <div class="my-feed-title">
+                            <div class="feed-group">
+                        <php>if(isset($_GET['feed_type']) || !empty($_GET['feed_key'])){</php>
+                        <i class="arrow-nav-t" event-node='feed_tab_btn' title="{:L('PUBLIC_FOLD')}"></i>
+                        <php>}else{</php>
+                        <i class="arrow-nav-b" event-node='feed_tab_btn' title="{:L('PUBLIC_UNFOLD')}"></i>
+                        <php>}</php>
+                        </div>
+                            <h4>我的微博(共<span event-node="weibo_count" event-args="uid={$GLOBALS['ts']['mid']}" id="follow_count">{$feedCount|default=0}</span>条)</h4>
+                            <div class="mod-feed-tab mt10" id="mod-feed-tab" <php>if(!isset($_GET['feed_type']) && empty($_GET['feed_key'])){</php>style="display: none;"<php>}</php> >
+                            <ul class="inner-feed-nav">
+                                <li <eq name='feedType' value=''>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>''))}">全部</a></li>
+                                <li <eq name='feedType' value='post'>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>'post'))}">原创</a></li>
+                                <li <eq name='feedType' value='repost'>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>'repost'))}">转发</a></li>
+                                <li <eq name='feedType' value='postimage'>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>'postimage'))}">图片</a></li>
+                                <li <eq name='feedType' value='postfile'>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>'postfile'))}">附件</a></li>
+                                <li <eq name='feedType' value='postvideo'>class="current"</eq>><a href="{:U('public/Index/myFeed', array('feed_type'=>'postvideo'))}">视频</a></li>
+                            </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sperson-feedlist" >
+                        {:W('FeedList',array('type'=>'space','feedApp'=>t($_GET['feedApp']),'feed_type'=>$feedType,'feed_key'=>$feed_key,'loadnew'=>0))}
+                    </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="__THEME__/js/module.weibo.js"></script>
+<include file="__THEME__/public_footer" />

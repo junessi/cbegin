@@ -2,3 +2,5 @@ _runtime
 data
 config
 install
+.ftpquota
+.htaccess

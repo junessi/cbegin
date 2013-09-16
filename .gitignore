@@ -4,3 +4,4 @@ config
 install
 .ftpquota
 .htaccess
+*.swp

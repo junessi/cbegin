@@ -2,3 +2,4 @@ data
 _runtime
 config
 install
+*.swp

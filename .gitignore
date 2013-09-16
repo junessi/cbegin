@@ -3,3 +3,5 @@ _runtime
 config
 install
 *.swp
+addons/plugin/AdSpace/config
+api/uc_client/data/cache

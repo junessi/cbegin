@@ -6,3 +6,4 @@ install
 .htaccess
 addons/plugin/AdSpace/config
 api/uc_client/data/cache
+*.swp

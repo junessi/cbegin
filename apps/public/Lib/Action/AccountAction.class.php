@@ -125,6 +125,17 @@ class AccountAction extends Action
 			} else {
 				$save['search_key'] = $save['uname'];
 			}
+			// 修改用户年龄
+			$age = t($_POST['age']);
+			$res = model('Register')->isValidAge($age);
+			if(!$res)
+			{
+				$error = model('Register')->getLastError();
+				return $this->ajaxReturn(null, $error, $res);		
+			}
+			$save['age'] = $age;
+
+			// 保存用户信息
 			$res = model('User')->where("`uid`={$this->mid}")->save($save);
 			$res && model('User')->cleanCache($this->mid);	
 			$user_feeds = model('Feed')->where('uid='.$this->mid)->field('feed_id')->findAll();

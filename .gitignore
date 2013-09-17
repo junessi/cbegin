@@ -1,4 +1,8 @@
-data
+data/iswaf
+data/schedule
+data/update
+data/upload
+data/user
 _runtime
 config
 install

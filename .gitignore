@@ -1,3 +1,8 @@
+data/iswaf
+data/schedule
+data/update
+data/upload
+data/user
 _runtime
 data
 config
@@ -7,3 +12,5 @@ install
 addons/plugin/AdSpace/config
 api/uc_client/data/cache
 *.swp
+addons/plugin/AdSpace/config
+api/uc_client/data/cache

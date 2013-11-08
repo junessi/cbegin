@@ -1,0 +1,42 @@
+<select style="float:left;margin:0 10px 0 0;" name="level0" id="level0" onchange="changeIndustry(this)"></select>
+<select style="float:left;margin:0 10px 0 0;" name="level1" id="level1" onchange="changeIndustry(this)"></select>
+
+<script type="text/javascript">
+var json = eval({$tree});			// 行业JSON数据
+var arrNodeChild = new Array();		// 子树数组
+
+// 行业初始化
+var init = function() {
+	// 获取树形结构的子树
+	var option0 = '<option value="0">请选择</option>';
+	var option1 = '<option value="0">请选择</option>';
+	$.each(json, function(i, n) {
+		option0 += '<option value="' + n.industry_id+ '">' + n.industry_name + '</option>'
+		arrNodeChild[n.industry_id] = n.child;
+	});
+	$('#level0').html(option0);
+	$('#level1').html(option1);
+};
+
+// 改变行业方法
+var changeIndustry = function(obj) {
+	var id = $(obj).attr('id');
+	var val = $(obj).val();
+	switch(id) {
+		case 'level0':
+			if(arrNodeChild[val] !== null) {
+				if(val == 0) {
+					$('#level1').html('<option value="0">请选择</option>');
+					break;
+				}
+				var option1 = '<option value="0">请选择</option>';
+				$.each(arrNodeChild[val], function(i, n) {
+					option1 += '<option value="' + n.industry_id + '">' + n.industry_name + '</option>';
+				});
+				$('#level1').html(option1);
+			}
+ 			break;
+	}
+} 
+init();
+</script>

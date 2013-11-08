@@ -70,6 +70,11 @@ return array(
 'PUBLIC_CONFIRM_PASSWORD'=>'确认密码',
 'PUBLIC_REAL_NAME'=>'昵称',
 'PUBLIC_GENDER'=>'性别',
+<<<<<<< HEAD
+=======
+'PUBLIC_AGE'=>'年龄',
+'PUBLIC_INVALID_AGE'=>'请正确填写年龄',
+>>>>>>> develop
 'PUBLIC_MALE'=>'男',
 'PUBLIC_FEMALE'=>'女',
 'PUBLIC_PASSWORD_TIPS'=>'密码太短了，最少6位',
@@ -1105,4 +1110,8 @@ return array(
 'NOTIFY_SITELIST_DENY_TITLE'=>'',
 'DIGG_MESSAGE_CONTENT'=>'{user} 赞了你的微博:<br/>{content} <a href="{sourceurl}&digg=1" target=‘_blank‘>去看看>></a>',
 'DIGG_MESSAGE_TITLE'=>'{user} 赞了你的微博'
+<<<<<<< HEAD
 );
+=======
+);
+>>>>>>> develop

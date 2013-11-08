@@ -3,9 +3,8 @@ data/schedule
 data/update
 data/upload
 data/user
-addons/model/error_log
+data/develop/notValveForKey.php
 _runtime
-data
 config
 install
 .ftpquota
@@ -14,4 +13,5 @@ addons/plugin/AdSpace/config
 api/uc_client/data/cache
 *.swp
 addons/plugin/AdSpace/config
+addons/model/error_log
 api/uc_client/data/cache

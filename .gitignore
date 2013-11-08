@@ -3,6 +3,7 @@ data/schedule
 data/update
 data/upload
 data/user
+addons/model/error_log
 _runtime
 data
 config
@@ -13,4 +14,5 @@ addons/plugin/AdSpace/config
 api/uc_client/data/cache
 *.swp
 addons/plugin/AdSpace/config
+data/develop/notValveForKey.php
 api/uc_client/data/cache

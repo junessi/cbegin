@@ -70,8 +70,6 @@ return array(
 'PUBLIC_CONFIRM_PASSWORD'=>'确认密码',
 'PUBLIC_REAL_NAME'=>'昵称',
 'PUBLIC_GENDER'=>'性别',
-'PUBLIC_AGE'=>'年龄',
-'PUBLIC_INVALID_AGE'=>'请正确填写年龄',
 'PUBLIC_MALE'=>'男',
 'PUBLIC_FEMALE'=>'女',
 'PUBLIC_PASSWORD_TIPS'=>'密码太短了，最少6位',

@@ -3,9 +3,15 @@ data/schedule
 data/update
 data/upload
 data/user
+data/develop/notValveForKey.php
 _runtime
 config
 install
+.ftpquota
+.htaccess
+addons/plugin/AdSpace/config
+api/uc_client/data/cache
 *.swp
 addons/plugin/AdSpace/config
+addons/model/error_log
 api/uc_client/data/cache

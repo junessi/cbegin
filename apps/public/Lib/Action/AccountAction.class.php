@@ -718,4 +718,8 @@ class AccountAction extends Action
 		$this->setDescription(t(implode(',', getSubByKey($data['bind'],'name'))));
    	    $this->display();
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> develop

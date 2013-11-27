@@ -230,6 +230,7 @@ M.addEventFns({
 		blur: function() {
 			// 获取数据
 			var sValue = $.trim(this.value);
+			//alert($.trim(this.value));
 			var sValueArr = sValue.split(",");
 			// 验证数据正确性
 			if(sValue == "" || sValueArr[0] == 0) {
@@ -266,6 +267,51 @@ M.addEventFns({
 			}, 200);
 		}
 	},
+	
+	// 行业信息验证
+	input_industry: {
+		blur: function() {
+			// 获取数据
+			var sValue = $.trim(this.value);
+			//alert($.trim(this.value));
+			var sValueArr = sValue.split(",");
+			// 验证数据正确性
+			if(sValue == "" || sValueArr[0] == 0) {
+				tips.error(this, "请选择行业");
+				this.bIsValid = false;
+				this.value = '0,0';
+			} else if(sValueArr[1] == 0) {
+				tips.error(this, "请选择完整行业信息");
+				this.bIsValid = false;
+			} else {
+				tips.success(this);
+				this.bIsValid = true;
+			}
+		},
+		load: function() {
+			// 获取参数信息
+			var _this = this;
+			// 验证数据正确性
+			setInterval(function() {
+				// 获取数据
+				var sValue = $.trim(_this.value);
+				var sValueArr = sValue.split(",");
+				// 验证数据正确性
+				if(sValue == "" || sValueArr[0] == 0) {
+					tips.error(_this, "请选择行业");
+					_this.bIsValid = false;
+				} else if(sValueArr[0] != 0 && sValueArr[1] == 0) {
+					tips.error(_this, "请选择完整行业信息");
+					_this.bIsValid = false;
+				} else {
+					tips.success(_this);
+					_this.bIsValid = true;
+				}
+			}, 200);
+		}
+	},
+	
+	
 	// 时间格式验证
 	input_date: {
 		focus: function() {

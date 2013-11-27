@@ -273,9 +273,23 @@ class RegisterAction extends Action
 		$map['location'] = t($_POST['city_names']);
 		$cityIds = t($_POST['city_ids']);
 		$cityIds = explode(',', $cityIds);
+		//echo "<script>alert('".$_POST['city_names']." & ".$_POST['city_ids']."')</script>";
 		isset($cityIds[0]) && $map['province'] = intval($cityIds[0]);
 		isset($cityIds[1]) && $map['city'] = intval($cityIds[1]);
 		isset($cityIds[2]) && $map['area'] = intval($cityIds[2]);
+		//echo "<script>alert($cityIds[0])</script>";
+		//echo "<script>alert($cityIds[1])</script>";
+		//echo "<script>alert($cityIds[2])</script>";
+		
+		//添加行业信息
+		$map['industry'] = t($_POST['industry_name']);
+		$industryId = t($_POST['industry_id']);
+		//echo "<script>alert('".$_POST['industry_name']." & ".$_POST['industry_id']."')</script>";
+		$industryId = explode(',', $industryId);
+		isset($industryId[0]) && $map['level0'] = intval($industryId[0]);
+		isset($industryId[1]) && $map['level1'] = intval($industryId[1]);
+		//echo "<script>alert($industryId[0])</script>";
+		//echo "<script>alert($industryId[1])</script>";
 		// 审核状态： 0-需要审核；1-通过审核
 		$map['is_audit'] = $this->_config['register_audit'] ? 0 : 1;
 		$map['is_active'] = $this->_config['need_active'] ? 0 : 1;
@@ -287,6 +301,8 @@ class RegisterAction extends Action
 		} else {
 			$map['search_key'] = $map['uname'];
 		}
+		//echo "<script>alert('1".count($map)."');</script>";
+		
 		$uid = $this->_user_model->add($map);
 		if($uid) {
 			// 添加积分

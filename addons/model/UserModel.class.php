@@ -38,6 +38,9 @@ class UserModel extends Model {
 			27 => 'search_key',
 			28 => 'invite_code',
 			29 => 'age',
+			30 => 'industry',
+			31 => 'level0',
+			32 => 'level1',
 			'_autoinc' => true,
 			'_pk' => 'uid' 
 	);

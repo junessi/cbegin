@@ -21,6 +21,7 @@
                             <ul class="info">
                                 <li><label class="info-l">{:L('PUBLIC_REAL_NAME')}：</label><label class="info-r">{$user_info[$uid]['uname']}</label>&nbsp;</li>
                                 <li><label class="info-l">{:L('PUBLIC_GENDER')}：</label><label class="info-r"><php>echo $user_info[$uid]['sex'] == 1 ? L('PUBLIC_MALE') : L('PUBLIC_FEMALE');</php></label>&nbsp;</li>
+								<li><label class="info-l">{:L('PUBLIC_AGE')}：</label><label class="info-r"><php>echo $user_info[$uid]['age']</php></label>&nbsp;</li>
                                 <li><label class="info-l">地区：</label><label class="info-r">{$user_info[$uid]['location']}</label>&nbsp;</li>
                                 <php>if(!empty($user_info[$uid]['intro'])){</php><li><label class="info-l">个人简介：</label><label class="info-r">{$user_info[$uid]['intro']}</label>&nbsp;</li><php>}</php>
                             </ul>
@@ -61,4 +62,8 @@
         </div>
     </div>
 <include file="__THEME__/public_footer" />
+<<<<<<< HEAD
 <script src="__THEME__/js/module.weibo.js"></script>
+=======
+<script src="__THEME__/js/module.weibo.js"></script>
+>>>>>>> develop

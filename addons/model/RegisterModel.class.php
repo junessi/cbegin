@@ -137,10 +137,10 @@ class RegisterModel extends Model {
 	 * @return boolean 年龄是否合理
 	 */
 	public function isValidAge($age) {
-		$res = false;
-		if($age > 0)
+		$res = true;
+		if($age < 0)
 		{
-			$res = true;
+			$res = false;
 			$this->_error = L('PUBLIC_INVALID_AGE');
 		}
 

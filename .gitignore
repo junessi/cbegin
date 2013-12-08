@@ -4,6 +4,8 @@ data/update
 data/upload
 data/user
 data/develop/notValveForKey.php
+data/lang/system_config.php
+error_log
 _runtime
 config
 install

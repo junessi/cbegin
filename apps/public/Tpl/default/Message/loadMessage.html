@@ -1,0 +1,10 @@
+        <volist name="message.data" id="vo">
+            <dl class="reply-list <php>if($vo['from_uid'] == $uid){ echo 'my-reply'; }</php> clearfix">
+                <dt class="face"><a href="{$vo['user_info']['space_url']}"><img src="{$vo['user_info']['avatar_middle']}" width="50" height="50"></a></dt>
+                <dd class="info">
+                  <p class="hd"><a href="{$vo['user_info']['space_url']}"><if condition="$vo['from_uid'] eq $mid">{:l('PUBLIC_ME')}：<else />{$vo['user_info']['uname']}：</if> </a>{$vo.content}</p>
+                  <p class="date"><php>if(CheckPermission('core_normal','send_message')){</php><span><a href="javascript:;" onclick="reply_message('{$vo['user_info']['uname']}')">{:l('PUBLIC_STREAM_REPLY')}</a></span><php>}</php>{$vo.mtime|friendlyDate}</p>
+                </dd>
+                
+            </dl>
+         </volist>

@@ -75,6 +75,39 @@ class NaviModel extends Model {
 		}
 		return false;
 	}
+
+	public function addToFrontAppList($data){
+		$map['app_name'] = $data['app_name'];
+		$list = $this->where($map)->findAll();
+		if (count($list) == 0)
+		{
+			unset($navi['navi_id']);
+			$navi['navi_name'] = $data['app_alias'];
+			$navi['app_name'] = $data['app_name'];
+			$navi['url'] = '{website}'.'/index.php?app='.$data['app_name'].'&mod=Index&act=index';
+			$navi['target'] = '_self';
+			$navi['status'] = $data['status'];
+			$navi['position'] = 0;
+			$navi['guest'] = 1;
+			$navi['is_app_navi'] = 0;
+			$navi['parent_id'] = 0;
+			$navi['order_sort'] = $this->max('order_sort') + 1;
+			if ($this->add($navi))
+				return true;
+		}
+		return false;
+	}
+
+	public function removeFromFrontAppList($data){
+		$map['app_name'] = $data['app_name'];
+		$list = $this->where($map)->findAll();
+		if (count($list) > 0)
+		{
+			$this->where($map)->delete();
+			return true;
+		}
+		return false;
+	}
 	/**
 	 * 清除导航缓存
 	 * @return void

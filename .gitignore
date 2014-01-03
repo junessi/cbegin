@@ -17,4 +17,6 @@ api/uc_client/data/cache
 addons/plugin/AdSpace/config
 addons/model/error_log
 api/uc_client/data/cache
+!apps/admin
+!apps/public
 apps

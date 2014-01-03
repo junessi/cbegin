@@ -465,6 +465,17 @@ class AppModel extends Model {
 			$map ['app_id'] = $data ['app_id'];
 			unset ( $data ['app_id'] );
 			if ($this->where ( $map )->save ( $data )) {
+				// 添加到前台应用列表
+				if ($data['add_front_applist'] == '1')
+				{
+					if (model('Navi')->addToFrontAppList($data))
+						model('Navi')->cleanCache();
+				}
+				else
+				{
+					if (model('Navi')->removeFromFrontAppList($data))
+						model('Navi')->cleanCache();
+				}
 				$this->cleanCache ( $map ['app_id'] );
 				return true;
 			} else {
@@ -490,6 +501,13 @@ class AppModel extends Model {
 				include_once $install_script;
 			}
 			
+			// 添加到前台应用列表
+			if ($data['add_front_applist'] == '1')
+			{
+				if (model('Navi')->addToFrontAppList($data))
+					model('Navi')->cleanCache();
+			}
+
 			// 判断是否需要自动补充导航的语言KEY：PUBLIC_APPNAME_应用名
 			$lang ['key'] = 'PUBLIC_APPNAME_' . strtoupper ( $data ['app_name'] );
 			$lang ['appname'] = 'PUBLIC';

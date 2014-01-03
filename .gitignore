@@ -14,6 +14,7 @@ install
 addons/plugin/AdSpace/config
 api/uc_client/data/cache
 *.swp
+*.conf
 *.sh
 addons/plugin/AdSpace/config
 addons/model/error_log

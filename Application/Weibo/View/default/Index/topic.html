@@ -1,0 +1,257 @@
+<extend name="Base/common"/>
+
+
+<block name="body">
+<style>
+    #main-container{
+        width: 1080px;
+    }
+</style>
+    <link href="__PUBLIC__/Weibo/css/weibo.css" rel="stylesheet"/>
+    <!--微博左侧内容列表部分-->
+    <!--微博左侧内容列表部分-->
+    <!--微博内容列表部分-->
+    <div class="weibo_middle col-md-8">
+        <include file="_quickweibo"/>
+        <div>
+
+            {:hook('Advs', 'weibo_below_sendbox')}
+        </div>
+        <!--  筛选部分-->
+        <if condition="is_login()">
+            <div>
+                <div id="weibo_filter" style="margin-bottom: 10px">
+                        <a id="all"  href="{:U('Weibo/Index/index')}">圈子动态</a>
+                        <a id="concerned" href="{:U('Weibo/Index/myconcerned')}">我的关注</a>
+                        <a id="topic" href="{:U('Weibo/Index/topic')}">话题讨论</a>
+                        <a id="find" href="{:U('Weibo/Index/find')}">创友查找</a>
+                </div>
+            </div>
+            <script>
+                $('#weibo_filter #{$filter_tab}').addClass('active');
+                /*                    $('#nav_bar_container').append( $('#weibo_filter'));*/
+            </script>
+        </if>
+        
+		<div class="index_topic_type">
+			<div class="row">
+				<div class="col-md-12">
+					<ul>
+						<li <eq name="topic_type" value="hot">class="active"</eq>><a href="{:U('',array('type'=>'hot'))}"  >热门话题榜</a></li>
+						<li <eq name="topic_type" value="cate">class="active"</eq> ><a href="{:U('',array('type'=>'cate'))}"  >分类</a></li>
+						<li <eq name="topic_type" value="friend">class="active"</eq> ><a href="{:U('',array('type'=>'friend'))}"  >好友关注</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	    <div id="index_topic_page" >
+	    	<eq name="topic_type" value="hot">
+	    		<volist name="lists" id="vo" key="k">
+	        	<div class="row index-topic-item">
+	        		<div class="col-md-3 text-left " >
+	        			<a href="{:U('weibo/topic/index',array('topk'=>urlencode($vo['name'])))}" ><img src="{$vo.logo|get_cover=###,'path'}" width="160" height="160"></a>
+	        		</div>
+	        		<div class="col-md-9">
+	        			<div class="row ">
+	        				<div class="col-md-12 ">
+	        					<div class="index-topic-title">
+		        					<span class="topic-item-top">TOP{$k}</span> 
+		        					<span class="topic-item-name"><a href="{:U('weibo/topic/index',array('topk'=>urlencode($vo['name'])))}" >#{$vo.name}#</a></span>
+		        					<span class="topoc-item-cate btn btn-default btn-xs">{$vo.cate_id|get_topic_cate}</span>
+	        					</div>
+	        					<div class="index-topic-intro">
+	        						<p>{$vo.intro}</p>
+	        					</div>
+	        					<div class="index-topic-info">
+	        						<span class="topic-item-count">阅读数：{$vo.read_count}</span>
+	        						<span class="topic-item-host">主持人：{$vo.uadmin|get_username}</span>
+	        						<span class="topic-item-follow">{$vo.id|get_topic_follow}</span>
+	        					</div>
+	        				</div>
+	        			</div>
+					</div>
+	        	</div>
+	       	 	</volist>
+	    	</eq>
+	        <eq name="topic_type" value="cate">
+	        	<div class="index-topic-cate-box">
+	        		<a href="{:U('',array('type'=>'cate'))}" class="btn btn-default btn-sm index-topic-cate-btn <empty name='cid' >active</empty>">全部</a>
+	        		<foreach name="Think.config.topic_cate" item="vo" key="k">
+	        			<a href="{:U('',array('type'=>'cate','cid'=>$k))}" class="btn btn-default btn-sm index-topic-cate-btn <eq name='cid' value='$k'>active</eq>">{$vo}</a>
+	        		</foreach>
+	        	</div>
+	        	
+	        	<volist name="lists" id="vo" key="k">
+	        	<div class="row index-topic-item">
+	        		<div class="col-md-3 text-left " >
+	        			<a href="{:U('weibo/topic/index',array('topk'=>urlencode($vo['name'])))}" ><img src="{$vo.logo|get_cover=###,'path'}" width="160" height="160"></a>
+	        		</div>
+	        		<div class="col-md-9">
+	        			<div class="row ">
+	        				<div class="col-md-9 ">
+	        					<div class="index-topic-title">
+		        					<span class="topic-item-top">TOP{$k}</span> 
+		        					<span class="topic-item-name"><a href="{:U('weibo/topic/index',array('topk'=>urlencode($vo['name'])))}" >#{$vo.name}#</a></span>
+		        					<span class="topoc-item-cate btn btn-default btn-xs">{$vo.cate_id|get_topic_cate}</span>
+	        					</div>
+	        					<div class="index-topic-intro">
+	        						<p>{$vo.intro}</p>
+	        					</div>
+	        					<div class="index-topic-info">
+	        						<span class="topic-item-count">阅读数：{$vo.read_count}</span>
+	        						<span class="topic-item-host">主持人：{$vo.uadmin|get_username}</span>
+	        						<span class="topic-item-follow">{$vo.id|get_topic_follow}</span>
+	        					</div>
+	        				</div>
+	        			</div>
+					</div>
+	        	</div>
+	       	 	</volist>
+	        </eq>
+	        
+	        <eq name="topic_type" value="friend">
+	        <volist name="lists" id="vo" key="k">
+	        	<div class="row index-topic-item">
+		        	<div class="col-md-12">
+		        		<p class="index-topic-follow-lists">
+			        		<span><a href="" ><img src="{:get_user_avatar($vo['uid'])}" ucard="{$vo.uid}" height="50px"></a></span>
+			        		<span>关注了话题 <a href="{:U('weibo/topic/index',array('topk'=>urlencode($vo['name'])))}" >#{$vo.name}#</a></span>
+			        		<span>{$vo.create_time|date='Y-m-d H:i',###}</span>
+		        		</p>
+		        	</div>
+	        	</div>	
+	        </volist>
+	        </eq>
+	    </div>
+    </div>
+
+    <!--微博内容列表部分结束-->
+
+    <!--首页右侧部分-->
+    <div class="weibo_right col-md-4">
+
+        <!--登录后显示个人区域-->
+        <if condition="is_login()">
+            <div ><img class="cover" src="__PUBLIC__/Weibo/images/bg.jpg" style="height: 70px;width: 100%"></div>
+
+            <div class=" user_info" style="padding: 0px;background-color: #ffffff;">
+
+                <div class="avatar-bg">
+
+
+                    <div class="headpic ">
+                        <a href="{$self.space_url}" ucard="{$self.uid}"><img src="{$self.avatar128}"
+                                                                             class="avatar-img"
+                                                                             style="width:60px;"/></a>
+                    </div>
+
+
+                    <div class="clearfix " style="padding: 0px;margin-bottom:8px">
+                        <div class="col-xs-12" style="text-align: center">
+                        <span class="name_touxian">
+                            {$self.title}
+                        <a ucard="{$self.user.uid}" href="{$self.space_url}" class="user_name">{$self.nickname|htmlspecialchars}</a>
+
+                             <if condition="$self['rank_link'][0]['num']">
+                                 <volist name="self['rank_link']" id="vl">
+                                     <if condition="$vl['is_show']">
+                                         <img src="{$vl.logo_url}" title="{$vl.title}"
+                                              alt="{$vl.title}"
+                                              style="width: 18px;height: 18px;vertical-align: middle;margin-left: 2px;"/>
+                                     </if>
+                                 </volist>
+                                 <else/>
+
+                             </if>
+                            </span>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <a href="{:U('usercenter/index/applist',array('uid'=>$self['uid'],'type'=>'weibo'))}" title="微博数">{$self.weibocount}</a><br>微博
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <a href="{:U('usercenter/index/fans',array('uid'=>$self['uid']))}" title="粉丝数">{$self.fans}</a><br>粉丝
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <a href="{:U('usercenter/index/following',array('uid'=>$self['uid']))}" title="关注数">{$self.following}</a><br>关注
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </if>
+        <!--登录后显示个人区域部分结束-->
+
+        <div>
+            <div class="checkin">
+                {:hook('checkin')}
+
+
+                {:hook('Rank')}
+            </div>
+            {:hook('weiboSide')}
+            <!--广告位-->
+            {:hook('Advs', 'weibo_below_checkrank')}
+            <!--广告位end-->
+            {:W('TopUserList/lists',array(null,'score desc','活跃用户','top'))}
+            {:W('UserList/lists')}
+
+        </div>
+    </div>
+    <!--首页右侧部分结束-->
+
+
+</block>
+
+<block name="script">
+
+    <script src="__JS__/weibo.js"></script>
+    <script>
+        var SUPPORT_URL = "{:addons_url('Support://Support/doSupport')}";
+        var noMoreNextPage = false;
+        var isLoadingWeibo = false;
+        var currentPage = '{$page}';
+        var loadCount = 1;
+        var lastId = '{$lastId}';
+        var url = "{$loadMoreUrl}";
+        $(function () {
+            //当屏幕滚动到底部时
+
+            if (currentPage == 1) {
+                $(window).on('scroll', function () {
+                    if (noMoreNextPage) {
+                        return;
+                    }
+                    if (isLoadingWeibo) {
+                        return;
+                    }
+                    if (isLoadMoreVisible()) {
+                        loadNextPage();
+                    }
+                });
+                $(window).trigger('scroll');
+            }
+	
+            var is_follow = 0;
+			$('.topic_follow').click(function (){
+				var obj = $(this);
+				var topic_id = obj.attr('data-id');
+				var action = "{:U('Topic/follow')}";
+				if(is_follow == 0){
+					$.post(action,{topic_id:topic_id},function(data){
+						if(data.status){
+							toast.success(data.info, '温馨提示');
+							obj.text('已关注');
+							is_follow = 1;
+						}else{
+							toast.error(data.info, '温馨提示');
+						}
+					},'json');
+				}
+				
+			});
+
+        });
+    </script>
+
+
+</block>

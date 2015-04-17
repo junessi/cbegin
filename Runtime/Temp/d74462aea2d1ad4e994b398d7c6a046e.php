@@ -1,0 +1,3 @@
+<?php
+//000000000060a:4:{i:0;a:6:{s:3:"uid";s:1:"1";s:8:"nickname";s:5:"ADMIN";s:9:"total_num";s:1:"2";s:7:"con_num";s:1:"1";s:11:"total_score";s:1:"0";s:5:"ctime";s:10:"1427695781";}i:1;a:6:{s:3:"uid";s:2:"60";s:8:"nickname";s:4:"jack";s:9:"total_num";s:1:"1";s:7:"con_num";s:1:"1";s:11:"total_score";s:1:"0";s:5:"ctime";s:10:"1428829178";}i:2;a:6:{s:3:"uid";s:2:"59";s:8:"nickname";s:6:"niklas";s:9:"total_num";N;s:7:"con_num";N;s:11:"total_score";N;s:5:"ctime";N;}i:3;a:6:{s:3:"uid";s:2:"61";s:8:"nickname";s:6:"mzc123";s:9:"total_num";N;s:7:"con_num";N;s:11:"total_score";N;s:5:"ctime";N;}}
+?>

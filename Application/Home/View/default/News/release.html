@@ -1,0 +1,66 @@
+<extend name="Base/common"/>
+<block name="style"><link type="text/css" rel="stylesheet" href="__CSS__/news.css"/></block>
+<block name="breadcrumbs">
+<div class="breadcrumbs ">
+	<div class="container">
+		<h1 class="pull-left">发布资讯</h1>
+		<ul class="pull-right breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li><a href="/news/">资讯</a></li>
+            <li><a href="{:U('release')}">发布资讯</a></li>
+        </ul>
+	</div>
+</div>
+</block>
+
+<block name="body">
+<div class="container">
+	<div class="row">
+	
+		<div class="col-md-9 news-left">
+		
+			<form action="__SELF__" method="post" id="form-release" >
+			  <div class="form-group">
+			    <label for="title">资讯标题</label>
+			    <input type="text" class="form-control" id="title" placeholder="资讯标题" name="title">
+			   </div>
+			  <div class="form-group">
+			    <label for="category_id">分类</label>
+			    <select class="form-control" name="category_id">
+			    	<foreach name="categoryNav" item="vo">
+			    	<option value="{$vo.id}">{$vo.title}</option>
+			    	</foreach>
+			    </select>
+			  </div>
+			  
+			  <div class="form-group">
+			  	<label for="category_id">资讯内容</label>
+			  	{:W('UeditorMini/editor',array('contentEditor','content',$post['content'],'100%','250px',''))}
+			  </div>
+			  
+			  <div class="">
+			  	<label for="">资讯类型 </label>
+			  	<input type="radio" name="is_original" value="1"> 原创
+			  	<input type="radio" name="is_original" value="0"> 转载
+			  </div>
+			  
+			  <div class="form-group disable">
+			    <label for="source_url">来源链接 （转载请填写）</label>
+			    <input type="text" class="form-control" id="source_url" placeholder="来源链接" name="source_url">
+			   </div>
+			  
+			  <button type="submit" class="btn btn-default">发布</button>
+			</form>
+		</div>
+		
+		<div class="col-md-3 news-right">
+			<include file="right-block" />
+		</div>
+	</div>
+</div>
+</block>
+
+<block name="script">
+	<script src="__JS__/news.js"></script>
+	
+</block>

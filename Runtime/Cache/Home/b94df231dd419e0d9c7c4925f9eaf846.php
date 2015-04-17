@@ -1,0 +1,1 @@
+<?php if (!defined('THINK_PATH')) exit(); echo ($info["title"]); ?> —— 创始网-创业集结

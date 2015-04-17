@@ -1,0 +1,68 @@
+<extend name="Base/common"/>
+<block name="style"><link type="text/css" rel="stylesheet" href="__CSS__/news.css"/></block>
+<block name="breadcrumbs">
+<div class="breadcrumbs ">
+	<div class="container">
+		<h1 class="pull-left">资讯</h1>
+		<ul class="pull-right breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li><a href="/news/">资讯</a></li>
+            <li><a href="/news/{$category['name']}/">{$category.title}</a></li>
+        </ul>
+	</div>
+</div>
+</block>
+<block name="body">
+
+	<div class="row">
+	
+		<div class="col-md-8 news-left">
+			<include file="cate-nav" />
+			
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="news-detail-title">{$info.title}</h1>
+					<div class="news-detail-info text-right">
+					<p>
+						<span>时间: {$info.create_time|date='Y-m-d',###}</span>
+						<span>阅读量: {$info.view}</span>
+						<span>发布者: <a href="{:U('usercenter/index/index?uid='.$info['uid'])}" >{$info.uid|get_username}</a></span>
+					</p>
+					</div>
+					<notempty name="info.cover_id"><div class="news-detail-img"><img src="{$info.cover_id|get_cover=###,'path'}" width="100%"/></div></notempty>
+					<div class="news-detail-content">{$info.content}</div>
+					<div class="news-detail-original">
+						<span >{$info['is_original'] ? '原创' : '转载'} {$info.source_url}</span>
+					</div>
+					<div class="news-detail-social row">
+						<div class="col-md-6">
+							<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+							<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+						</div>
+						<div class="col-md-6 text-right">
+							<button class="btn btn-zan do-zan" data-id="{$info.id}" data-zan="0">点赞 <em>{$info.zan}</em></button>
+							<button class="btn btn-collection do-collection" data-id="{$info.id}">收藏 <em>{$info['collection'] ? $info['collection'] : 0}</em></button>
+						</div>
+					</div>
+					<div class="news-detail-tuijian">
+						<div id="hm_t_55499"></div>
+					</div>
+					<div class="news-detail-comment" id="comment">
+					{:hook('localComment',array('path'=>'home/document/'.$info['id'],'uid'=>$uid))}
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div class="col-md-4">
+			<include file="right-block" />
+			
+		</div>
+		
+	</div>
+</block>
+<block name="script">
+	<script src="__JS__/news.js"></script>
+	
+</block>

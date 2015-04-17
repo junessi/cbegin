@@ -1,0 +1,230 @@
+<extend name="Base/common"/>
+<block name="style"><link type="text/css" rel="stylesheet" href="__CSS__/project.css"/></block>
+<block name="breadcrumbs">
+<div class="breadcrumbs ">
+	<div class="container">
+		<h1 class="pull-left">发布{$type}</h1>
+		<ul class="pull-right breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li><a href="/project/">创业集结</a></li>
+            <li><a href="{:U('release')}">发布{$type}</a></li>
+        </ul>
+	</div>
+</div>
+</block>
+
+<block name="body">
+<div class="container">
+	<div class="row">
+	
+		<div class="col-md-8 news-left">
+			<div  class="project-release row">
+				
+				<form action="__SELF__" method="post" id="form-release">
+					<div class="col-md-3">
+						<div class="form-group">
+					    <select class="form-control" name="region">
+					    	<volist name=":get_project_region()" id="vo">
+					    	<option value="{$vo.id}">{$vo.name}</option>
+					    	</volist>
+					    </select>
+					  </div>
+					</div>
+					
+					<div class="col-md-9">
+						<div class="form-group">
+						    <input type="text" class="form-control" id="title" placeholder="{$type}标题" name="title">
+						</div>
+					</div>
+					
+					<eq name="category_id" value="51">
+					<div class="col-md-12">
+					<div class="form-group">
+						<span >{$type}LOGO：</span>
+						{:W('Common/UploadImage/render',array(array('id'=>'logo_img','name'=>'logo_img','width'=>'150','height'=>'150','value'=>'')))}
+					</div>
+					</div>
+					</eq>
+					
+					<div class="col-md-12">
+						<div class="form-group">
+							<span >{$type}行业：</span>
+							<volist name=":get_project_sel('industry')" id="vo">
+								<input type="radio" name="industry" value="{$vo.id}" data-direction="" class="project-industry"> <span>{$vo.title}</span> 
+							</volist>
+						</div>
+					</div>
+					
+					<div class="col-md-12">
+						<div class="form-group">
+							<span >{$type}方向：</span>
+							<span class="project-direction"></span>
+							
+						</div>
+					</div>
+					
+					<div class=""></div>
+					
+					<div class="col-md-12">
+						<div class="form-group">
+							<span >发展阶段：</span>
+							<volist name=":get_project_sel('stage')" id="vo">
+								<input type="radio" name="stage" value="{$vo.id}"> <span>{$vo.title}</span> 
+							</volist>
+						</div>
+					</div>
+					
+					<div class="col-md-12">
+						<div class="form-group">
+							<textarea name="advantage" class="form-control" rows="3" placeholder="{$type}优势"></textarea>
+						</div>
+					</div>
+					
+					<eq name="category_id" value="51" >
+					<div class="col-md-12">
+						<div class="form-group">
+							<span >资金来源：</span>
+							<volist name=":get_project_sel('funds')" id="vo">
+								<input type="radio" name="funds" value="{$vo.id}"> <span>{$vo.title}</span> 
+							</volist>
+						</div>
+					</div>
+					</eq>
+					<eq name="category_id" value="51" >
+					<div class="col-md-12">
+						<div class="form-group">
+							<span >投资额度：</span>
+							<volist name=":get_project_sel('quotas')" id="vo">
+								<input type="radio" name="quotas" value="{$vo.id}"> <span>{$vo.title}</span> 
+							</volist>
+						</div>
+					</div>
+					</eq>
+					
+					<eq name="category_id" value="51" >
+					<div class="col-md-12">
+						<div class="form-group">
+							<textarea name="team" class="form-control" rows="3" placeholder="团队情况"></textarea>
+						</div>
+					</div>
+					</eq>
+					
+					<eq name="category_id" value="51" >
+					<div class="col-md-12">
+						<div class="form-group">
+							<span >需要合伙人：</span>
+							<volist name=":get_project_sel('partners')" id="vo">
+								<input type="radio" name="partners" value="{$vo.id}"> <span>{$vo.title}</span> 
+							</volist>
+						</div>
+					</div>
+					</eq>
+					
+					<eq name="category_id" value="51" >
+					<div class="col-md-12">
+						<div class="form-group">
+							<span >合作方式：</span>
+							<volist name=":get_project_sel('partners_mode')" id="vo">
+								<input type="radio" name="partners_mode" value="{$vo.id}"> <span>{$vo.title}</span> 
+							</volist>
+						</div>
+					</div>
+					</eq>
+					
+					<eq name="category_id" value="51" >
+					<div class="col-md-12">
+						<div class="form-group">
+							<textarea name="partners_require" class="form-control" rows="3" placeholder="合伙人要求"></textarea>
+						</div>
+					</div>
+					</eq>
+					
+					<eq name="category_id" value="51" >
+					<div class="col-md-12">
+						<div class="form-group">
+							<textarea name="partners_duty" class="form-control" rows="3" placeholder="合伙人职责"></textarea>
+						</div>
+					</div>
+					</eq>
+					
+					<eq name="category_id" value="51" >
+					<div class="col-md-12">
+						<div class="form-group">
+							<textarea name="partners_return" class="form-control" rows="3" placeholder="合伙人回报"></textarea>
+						</div>
+					</div>
+					</eq>
+					
+					<eq name="category_id" value="52" >
+						<div class="col-md-12">
+							<div class="form-group">
+							<input type="text" class="form-control" name="invest_quotas" placeholder="投资额度" >
+							</div>
+						</div>
+						
+						<div class="col-md-12">
+							<div class="form-group">
+								<textarea name="invest_return" class="form-control" rows="3" placeholder="投资回报"></textarea>
+							</div>
+						</div>
+					
+					</eq>
+					
+					
+					
+					<div class="col-md-12">
+						<p>{$type}其它说明</p>
+						<p>
+						{:W('UeditorMini/editor',array('contentEditor','content',$post['content'],'100%','200px',''))}
+						</p>
+					</div>
+					
+					<div class="col-md-12">
+						<div class="form-group">
+							<label>视频链接：</label>
+						    <input type="text" class="form-control" id="video" placeholder="视频链接，优酷，土豆等自己上传的{$type}介绍" name="video">
+						</div>
+					</div>
+				  
+				  	<div class="col-md-12">
+				  		<input type="hidden" name="category_id" value="{$category_id}">
+				  		<button type="submit" class="btn btn-default">发布</button>
+				  	</div>
+				  	
+				</form>
+			</div>
+		</div>
+		
+		<div class="col-md-4 news-right">
+			<include file="right-block" />
+		</div>
+	</div>
+</div>
+</block>
+
+<block name="script">
+	<script src="__JS__/project.js"></script>
+	<script >
+	$(function (){
+		$('.project-industry').bind('click',function (){
+			var obj = $(this);
+			var id = obj.val();
+			var direction = obj.attr('data-direction');
+			var direction_inputs = '';
+			if(direction == ""){
+				$.post("{:U('getDirection')}",{id:id},function(data){
+					for(var i=0;i<data.length;i++){
+						direction_inputs += "<input type='radio' name='direction' value='"+data[i]['id']+"' > "+data[i]['title']+" ";
+						$('.project-direction').html(direction_inputs);
+						obj.attr({'data-direction':direction_inputs});
+					}
+					
+				},'json');
+			}
+			else{
+				$('.project-direction').html(direction);
+			}
+		});
+	});
+	</script>
+</block>

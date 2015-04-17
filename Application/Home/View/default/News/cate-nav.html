@@ -1,0 +1,6 @@
+<ul class="nav nav-pills">
+  <li role="presentation" <eq name="pageType" value="all">class="active"</eq> ><a href="/news/">全部</a></li>
+  <foreach name="categoryNav" item="vo">
+  <li role="presentation" <eq name="currentCate.id" value="$vo['id']">class="active"</eq> ><a href="/news/{$vo['name']}/">{$vo.title}</a></li>
+  </foreach>
+</ul>

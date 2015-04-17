@@ -1,0 +1,1 @@
+<?php if (!defined('THINK_PATH')) exit();?>User/editFieldSetting?profile_group_id=13&id=36

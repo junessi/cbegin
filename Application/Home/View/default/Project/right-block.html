@@ -1,0 +1,77 @@
+
+	<div class="row">
+	<if condition="is_login()" >
+		<div class="col-md-12">
+			<div class="user-box">
+				<div class="row">
+					<div class="col-md-3">
+						<p><img src='{$self.avatar128}' width="100%"></p>
+						<p class="user-box-info text-center">{$self.title}</p>
+					</div>
+					<div class="col-md-9 ">
+						<p class="user-box-name"><a href="{:U('usercenter/index/index?uid='.$self['uid'])}" >{$self.nickname}</a></p>
+						<p class="user-box-info">注册日期：{$self.reg_time|date='Y-m-d H:i:s',###}</p>
+						<p class="user-box-info">上次访问：{$self.last_login_time|date='Y-m-d H:i:s',###}</p>
+					</div>
+					
+					<div class="col-md-12">
+						<div class="user-box-count text-center">
+							<div>
+								<p>发布</p>
+								<p><a href="{:U('usercenter/index/project',array('uid'=>$self['uid'],'info_type'=>'release'))}" >{$self.project_count}</a></p>
+							</div>
+							<div>
+								<p>关注</p>
+								<p><a href="{:U('usercenter/index/project',array('uid'=>$self['uid'],'info_type'=>'collection'))}" >{$self.project_collection}</a></p>
+							</div>
+							<div>
+								<p>评论</p>
+								<p><a href="{:U('usercenter/index/project',array('uid'=>$self['uid'],'info_type'=>'comment'))}" >{$self.project_comment}</a></p>
+							</div>
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
+		</div>
+	</if>	
+		<div class="col-md-12">
+			<div class="right-block-title">
+				<p>热门标签</p>
+			</div>
+			<div class="right-hot-tags">
+				
+				<volist name=":get_project_tags(0)" id="vo">
+					<a href="{:create_project_url('',array('direction'=>$vo['id']))}" class="label label-default" >{$vo.title}</a>
+				</volist>
+				
+			</div>
+			
+			<div class="clearfix"></div>
+			<div class="right-block-title">
+				<p>最热项目</p>
+			</div>
+			<div class="right-hot-project">
+				<volist name=":get_hot_project()" id="vo" key="k">
+					<div class="right-hot-project-info">
+						<div class="right-hot-project-avatar">
+						<img src="{$vo.uid|get_user_avatar}" width="100%" ucard="{$vo.uid}">
+						</div>
+						<div class="right-hot-project-item">
+							<p><a href="{:U('detail?id='.$vo['id'])}" >{$k}.{$vo.title}</a></p>
+							
+						</div>
+					</div>
+					
+					<div class="clearfix"></div>
+				</volist>
+			</div>
+			
+			<div class="right-block-title">
+				<p>感兴趣的项目</p>
+			</div>
+		</div>
+		
+	</div>
+

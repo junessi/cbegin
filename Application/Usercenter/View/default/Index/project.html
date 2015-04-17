@@ -1,0 +1,81 @@
+<extend name="Base/common"/>
+
+<block name="style">
+    <link href="__CSS__/usercenter.css" rel="stylesheet" type="text/css"/>
+</block>
+
+<block name="body">
+    <div class="col-md-12 usercenter">
+        <div class="uc">
+            <include file="_top"/>
+            <include file="_top_menu"/>
+
+            <div class="row uc_content">
+                <div class="col-md-7 col-xs-12">
+                    <div class="row" style="margin-bottom: 20px;">
+                        <div class="col-xs-12 uc_information" style="margin-left: 10px;">
+                            <ul class="nav nav-pills ucenter-tab">
+                                <li>
+                                    <a href="{:U('Usercenter/Index/project',array('uid'=>$uid,'info_type'=>'release'))}"
+                                    <eq name="info_type" value="release"> class="uc_current"</eq>
+                                    ><if condition="$uid eq is_login()">我<else/>Ta</if>发布的项目</a>
+                                </li>
+                                <li>
+                                    <a href="{:U('Usercenter/Index/project',array('uid'=>$uid,'info_type'=>'collection'))}"
+                                    <eq name="info_type" value="collection"> class="uc_current"</eq>
+                                    ><if condition="$uid eq is_login()">我<else/>Ta</if>关注的项目</a>
+                               </li>
+                               <li>
+                                    <a href="{:U('Usercenter/Index/project',array('uid'=>$uid,'info_type'=>'comment'))}"
+                                    <eq name="info_type" value="comment"> class="uc_current"</eq>
+                                    ><if condition="$uid eq is_login()">我<else/>Ta</if>评论的项目</a>
+                               </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="row uc_project">
+                    	<eq name="info_type" value="release">
+	                    	<foreach name="lists" item="vo">
+	                    		<div class="col-xs-12">
+	                       			<p class="h3"><a href="{:U('Home/project/detail?id='.$vo['id'])}" >{$vo.title}</a></p>
+	                       			<p ><a href="{:U('Home/project/detail?id='.$vo['id'])}" >{$vo.description}</a></p>
+	                       			<p class="pull-left">{$vo.create_time|date="Y-m-d H:i",###} </p>
+	                       			<p class="pull-right"><eq name="vo.status" value="1">通过审核</eq><eq name="vo.status" value="2">审核中</eq><eq name="vo.status" value="-1">未通过审核</eq></p>
+	                       		</div>
+	                    	</foreach>
+	                       	<div class="col-xs-12">{$page}</div>
+	                    </eq>
+	                    <eq name="info_type" value="collection">
+	                    	<foreach name="lists" item="vo">
+	                    		<div class="col-xs-12">
+	                       			<p class="h3"><a href="{:U('Home/project/detail?id='.$vo['id'])}" >{$vo.title}</a></p>
+	                       			<p ><a href="{:U('Home/project/detail?id='.$vo['id'])}" >{$vo.description}</a></p>
+	                       			<p class="pull-left">关注时间 ：{$vo.collection_time|date="Y-m-d H:i",###} </p>
+	                       		</div>
+	                    	</foreach>
+	                       	<div class="col-xs-12">{$page}</div>
+	                    </eq>
+	                    <eq name="info_type" value="comment">
+	                    	<foreach name="lists" item="vo">
+	                    		<div class="col-xs-12">
+	                       			<p class="h5">评论内容：<a href="{:U('Home/project/detail?id='.$vo['row_id'])}#comment" >{$vo.content}</a></p>
+	                       			<p class="pull-left">评论时间 ：{$vo.create_time|date="Y-m-d H:i",###} </p>
+	                       			<p class="pull-right">评论给 ：<a href="{:U('Home/project/detail?id='.$vo['row_id'])}" >{$vo.title}</a></p>
+	                       		</div>
+	                    	</foreach>
+	                       	<div class="col-xs-12">{$page}</div>
+	                    	
+	                    </eq>
+                    </div>
+                    
+                    
+                </div>
+                <div class="col-md-5 col-sm-9 col-xs-12 uc_other_link">
+                    <include file="_right_link"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+

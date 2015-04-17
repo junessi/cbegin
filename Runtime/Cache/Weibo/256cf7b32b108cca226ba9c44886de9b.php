@@ -1,0 +1,1 @@
+<?php if (!defined('THINK_PATH')) exit();?>全站搜索微博

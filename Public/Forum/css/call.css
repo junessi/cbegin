@@ -1,0 +1,214 @@
+/*创业集结页面样式*/
+ul {padding-left:0;}
+li {list-style:none;}
+
+.call .cl {
+  background: white;
+  box-shadow: 0 0 5px #cccccc;
+  -moz-box-shadow: 0 0 5px #CCCCCC;
+  -khtml-box-shadow: 0 0 5px #CCCCCC;
+  border: 1px solid #dddddd;
+  border-radius: 0.2em;
+  margin-bottom: 1em;
+  
+}
+
+.sel-area {
+  padding-bottom: 20px;
+  border-bottom: 2px solid #999;
+}
+.sel-region {
+  margin-top: 20px; 
+}
+.sub-project {
+ 
+}
+.sel-job {
+  clear: both;
+  padding-top: 10px;
+  border-top: 2px solid #999;
+  margin-top:15px;
+}
+.sel-direction {
+  clear: both;
+}
+
+.sel-job ul li,
+.sel-direction ul li,
+.sel-phase ul li,
+.sel-partner ul li {
+	float: left;
+	margin-left: 5px;
+  padding: 4px;
+  cursor: pointer;
+  color: #666;
+}
+.sel-job ul li:hover,
+.sel-direction ul li:hover,
+.sel-phase ul li:hover,
+.sel-partner ul li:hover {
+  border-radius: 3px;
+  background: #ff7f7f;
+  color: #fff;
+}
+.sel-job ul li.selected,
+.sel-direction ul li.selected,
+.sel-phase ul li.selected,
+.sel-partner ul li.selected {
+  border-radius: 3px;
+  background: #ff7f7f;
+  color: #fff;
+}
+.sel-job span,
+.sel-direction span,
+.sel-phase span,
+.sel-partner span {
+	float: left;
+  clear: both;
+  font-weight: bold;
+  margin-top: 4px;
+}
+.sel-phase,
+.sel-partner {
+  clear: both;
+}
+.sel-phase {
+  clear: both;
+}
+.show-all-sel {
+  cursor: pointer;
+  clear: both;
+  margin-top: 10px;
+}
+.cl-order {
+  height: 36px;
+  line-height: 36px;
+  margin: 20px auto;
+}
+.cl-order ul li {
+  float: left;
+  margin-left: 10px;
+  border-right: 1px solid #ccc;
+}
+
+.cl-list {
+  overflow: hidden;
+  min-height: 240px;
+  box-shadow: 0 0 5px #cccccc;
+  -moz-box-shadow: 0 0 5px #CCCCCC;
+  -khtml-box-shadow: 0 0 5px #CCCCCC;
+  background: #f8f8f8;
+  border-radius: 3px;
+  margin-bottom:20px;
+}
+.cl-img {
+  display: block;
+  width: 144px;
+  height: 144px;
+}
+.cl_active {
+  float: left;
+  min-width: 200px;
+  margin-top: 20px;
+}
+.cl_active ul {
+  list-style: none;
+  margin-top: 20px;
+}
+.cl_active ul li {
+  width: 48px;
+  float: left;
+  text-align: center;
+  border-right: 1px solid #bebebe;
+  color: #999;
+}
+.cl_active ul li span {
+  color: #000;
+}
+.cl_active ul li.nobor {
+  border: none;
+}
+.cl-title {
+  color: #588ffc;
+  font-size: 16px;
+  margin-top: 20px;
+}
+.cl-title a {
+  color: #588ffc;
+}
+.cl-info ul li span {
+  color: #999;
+}
+.cl-info ul {
+  position: relative;
+  left: -15px;
+  margin-top: 10px;
+}
+.cl-intro {
+  clear: both;
+  margin-top: 84px;
+  color: #666;
+}
+
+.hot_search {
+  height: 40px;
+  margin:30px auto;
+}
+.hot_search_text {
+  display: block;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555555;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.hot_call {
+  margin-top: 10px;
+}
+.hot_call_top {
+  margin: 5px 15px 12px 0;
+  float: left;
+  border-bottom: 3px solid #00addf;
+  font-size: 16px;
+  height: 36px;
+}
+.cl_hot_img {
+  clear: both;
+  display: block;
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-left: 10px;
+}
+.hot_call_title {
+  height: 60px;
+  line-height: 60px;
+  float: left;
+  font-size: 16px;
+  margin-left: 8px;
+}
+.hot_call_title a {
+  color: #588ffc;
+}
+.cl-body {margin-bottom:40px;}
+
+#dropdown-region-menu {width:600px;}
+#dropdown-region-menu li {float:left;}
+
+
+.btn-zan,.btn-collection {background:none;}
+.btn-zan {border:1px solid #E74C3C;color:#E74C3C ;transition:1s all;}
+.btn-zan:hover {background : #E74C3C;color:#fff;}
+.btn-follow {border:1px solid #72c02c;color:#72c02c;transition:1s all;}
+.btn-follow:hover {background : #72c02c;color:#fff;}
+
+.project-nav .btn {border:1px solid #E74C3C;color:#E74C3C ;transition:1s all;width:100%;}
+.project-nav .btn:hover {background : #E74C3C;color:#fff;}

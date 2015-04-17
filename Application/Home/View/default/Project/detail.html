@@ -1,0 +1,116 @@
+<extend name="Base/common"/>
+<block name="style"><link type="text/css" rel="stylesheet" href="__CSS__/project.css"/></block>
+<block name="breadcrumbs">
+<div class="breadcrumbs ">
+	<div class="container">
+		<ul class="pull-right breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li><a href="/project/">创业集结</a></li>
+            <li><a href="/project/{$category['name']}/">{$category.title}</a></li>
+        </ul>
+	</div>
+</div>
+</block>
+
+<block name="body">
+
+	<div class="col-md-8 news-left">
+		
+		<div class="row">
+			<div class="col-md-10">
+				<h1>{$info.title}</h1>
+				<p>地区:{$info.region|get_district_by_id} 发布时间:{$info.create_time|date='Y-m-d',###}</p>
+			</div>
+			
+			<div class="col-md-2">
+				<a href="{:U('usercenter/index/index?uid='.$info['uid'])}" ucard="{$info.uid}" ><img src="{$info.logo_img|get_cover=###,'path'}" width="100%" ></a>
+			</div>
+			
+			<div class="clearfix col-md-12"><hr></div>
+			<div class="col-md-12 text-right">
+				<a href="javascript:;" class="btn btn-zan do-zan" data-zan="0" data-id="{$info.id}">支持:<em>{$info.zan}</em></a>
+				<a href="javascript:;" class="btn btn-collection do-collection" data-id="{$info.id}">关注:<em>{$info.collection}</em></a>
+			</div>
+			<div class="clearfix col-md-12"><hr></div>
+			
+			<div class="col-md-12">
+				<p class="project-detial-item-name">所属行业： <span>{$info.industry|get_project_config=###,'industry'}</span></p>
+				
+			</div>
+			
+			<div class="clearfix col-md-12"><hr></div>
+			
+			<div class="col-md-12">
+				<p class="project-detial-item-name">发展阶段: <span>{$info.stage|get_project_config=###,'stage'}</span></p>
+				<eq name="category.id" value="51">
+				<p class="project-detial-item-name">资金来源：<span>{$info.funds|get_project_config=###,'funds'}</span></p>
+				<p class="project-detial-item-name">投资额度：<span>{$info.quotas|get_project_config=###,'quotas'}</span></p>
+				</eq>
+				<eq name="category.id" value="52">
+					<p class="project-detial-item-name">投资额度：<span>{$info.invest_quotas}</span></p>
+					<p class="project-detial-item-name">投资回报：<span>{$info.invest_return}</span></p>
+				</eq>
+				<p class="project-detial-item-name">项目优势：<span></span></p>
+				<div class="project-detail-item-info">{$info.advantage}</div>
+			</div>
+			
+			<eq name="category.id" value="51">
+			
+				<div class="clearfix col-md-12"><hr></div>
+				
+				<div class="col-md-12">
+					<p class="project-detial-item-name">团队情况：<span></span></p>
+					<div class="project-detail-item-info">{$info.team}</div>
+				</div>
+				
+				<div class="clearfix col-md-12"><hr></div>
+				
+				<div class="col-md-12">
+					<p class="project-detial-item-name">需要合伙人: <span>{$info.partners|get_project_config=###,'partners'}</span></p>
+					<p class="project-detial-item-name">合作方式：<span>{$info.partners_mode|get_project_config=###,'partners_mode'}</span></p>
+					<p class="project-detial-item-name">合伙人要求：<span>{$info.partners_require}</span></p>
+					<p class="project-detial-item-name">合伙人职责：<span>{$info.partners_duty}</span></p>
+					<p class="project-detial-item-name">合伙人回报：<span>{$info.partners_return}</span></p>
+				</div>
+			
+			</eq>
+			<div class="clearfix col-md-12"><hr></div>
+			<div class="col-md-12">
+				<p class="project-detial-item-name">项目详细说明：<span></span></p>
+				<div class="project-detail-item-info">{$info.content}</div>
+				<p class="project-detial-item-name">视频：<span></span></p>
+				<div class="project-detial-video">
+					{$info.video}
+				</div>
+			</div>
+			
+			<div class="clearfix col-md-12"><hr></div>
+			<div class="col-md-12">
+				<p class="project-detial-item-name">关注列表：<span></span></p>
+				<div class="project-detail-item-info">
+					<volist name=":get_collection_lists($info['id'])" id="vo" key="k">
+					<eq name="k" value="1">
+						<span><a href="{:U('usercenter/index/index?uid='.$vo['uid'])}" ucard='{$vo.uid}' >{$vo.nickname}</a></span>
+					<else/>
+						<span> , <a href="{:U('usercenter/index/index?uid='.$vo['uid'])}" ucard='{$vo.uid}'>{$vo.nickname}</a></span>
+					</eq>
+					
+					</volist>
+				</div>
+			</div>
+			
+			<div class="col-md-12" id="comment">
+				{:hook('localComment',array('path'=>'home/document/'.$info['id'],'uid'=>$uid))}
+			</div>
+			
+		</div>
+	</div>
+	
+	<div class="col-md-4">
+		<include file="right-block" />
+	</div>
+
+</block>
+<block name="script">
+	<script src="__JS__/project.js"></script>
+</block>

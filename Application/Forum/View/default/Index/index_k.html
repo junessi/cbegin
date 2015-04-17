@@ -1,0 +1,143 @@
+<extend name="Base/common"/>
+<block name="style"><link type="text/css" rel="stylesheet" href="__CSS__/call.css"/></block>
+<block name="body">
+
+  		<div class="col-md-8 cl_left">
+  			
+  			<div class="row project-nav">
+  				<div class="col-md-6"><a href="" class="btn">项目找伙伴</a></div>
+  				<div class="col-md-6"><a href="" class="btn">资金找项目</a></div>
+  			</div>
+  			<div class="row">
+				<div class="col-md-12 sel-area">
+				
+					<div class="row">
+						<div class="col-md-9">
+							<div class="dropdown">
+							  <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-region" data-toggle="dropdown" aria-expanded="true">
+							    {$region ? get_district_by_id($region) : '地区'}
+							     <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-region" id="dropdown-region-menu">
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="{:create_project_url('index',array('region'=>'all'))}">全部</a></li>
+							    <volist name=":get_project_region()" id="vo" key="k">
+							    <li role="presentation"><a role="menuitem" tabindex="-1" href="{:create_project_url('index',array('region'=>$vo['id']))}">{$vo.name}</a></li>
+							   	</volist>
+							  </ul>
+							</div>
+						</div>
+						
+						<button type="button" class="col-md-3 btn btn-info sub-project">发布项目</button>
+					</div>
+					
+					<div class="sel-job row" >
+					  	<span class="col-md-2">项目行业</span>
+					  	<ul class="col-md-10">
+					  		<li <eq name="type" value="all"> class="selected" </eq> ><a href="{:create_project_url('index',array('type'=>'all'))}" >全部</a></li>
+					  		<volist name=":get_project_type()" id="vo">
+					  			<li <eq name="type" value="$vo.id">class="selected"</eq> ><a href="{:create_project_url('index',array('type'=>$vo['id']))}"  >{$vo.title}</a></li>
+					  		</volist>
+					  	</ul>
+					</div>
+					
+					<div class="sel-phase row" >
+			 			<span class="col-md-2">项目阶段</span>
+			 			<ul class="col-md-10">
+				 			<li <eq name="stage" value="all">class="selected" </eq> ><a href="{:create_project_url('index',array('stage'=>'all'))}" >全部</a></li>
+				 			<volist name=":get_project_stage()" id="vo">
+				 				<li <eq name="stage" value="$vo.id">class="selected"</eq>><a href="{:create_project_url('index',array('stage'=>$vo['id']))}"  >{$vo.title}</a></li>
+				 			</volist>
+				 			
+			 			</ul>
+				 	</div>
+				 	<!-- 选择合伙人 -->
+				 	<div class="sel-partner row" >
+				 		<span class="col-md-2">合伙人方式</span>
+				 		<ul class="col-md-10">
+				 			<li <eq name="partners" value="all">class="selected"</eq> ><a href="{:create_project_url('index',array('partners'=>'all'))}" >全部</a></li>
+				 			<volist name=":get_project_partners()" id="vo">
+				 				<li <eq name="partners" value="$vo.id">class="selected"</eq> ><a href="{:create_project_url('index',array('partners'=>$vo['id']))}"  >{$vo.title}</a></li>
+				 			</volist>
+				 		</ul>
+				 	</div>
+				 	<!-- 项目投资资金 -->
+				 	<div class="sel-partner row" >
+				 		<span class="col-md-2">投资额度</span>
+				 		<ul class="col-md-10">
+				 			<li <eq name="quotas" value="all">class="selected"</eq> ><a href="{:create_project_url('index',array('quotas'=>'all'))}" >全部</a></li>
+				 			<volist name=":get_project_quotas()" id="vo">
+				 				<li <eq name="quotas" value="$vo.id">class="selected"</eq> ><a href="{:create_project_url('index',array('quotas'=>$vo['id']))}"  >{$vo.title}</a></li>
+				 			</volist>
+				 		</ul>
+					</div>
+					
+				</div>
+				
+				<div class="col-md-12 cl-order">
+					<div class="btn-group btn-group-md">
+						<a href="{:create_project_url('index',array('order'=>'all'))}" class="btn btn-default">默认</a>
+					    <a href="{:create_project_url('index',array('order'=>'create_time'))}" class="btn btn-default">发布时间</a>
+					    <a href="{:create_project_url('index',array('order'=>'zan'))}" class="btn btn-default">最受欢迎</a>
+					    <a href="{:create_project_url('index',array('order'=>'post_count'))}" class="btn btn-default">最多关注</a>
+					    <a href="{:create_project_url('index',array('order'=>'follow'))}" class="btn btn-default">最多关注</a>
+					</div>
+				</div>
+				
+				<div class="col-md-12 cl-body">
+					<!-- cl-list是循环输出集结信息 -->
+					<foreach name="lists" item="vo">
+					<div class="cl-list row">
+						<div class="col-md-3 cl_active">
+							<img class="cl-img " src="{$vo.logo}" alt="">
+							<ul>
+								<li class="number_comment"><span>{$vo.total_count}</a></span><br>评论</li>
+								<li class="number_good"><span>{$vo.zan}</a></span><br>赞</li>
+								<li class="number_attention nobor"><span>{$vo.topic_count}</span><br>关注</li>
+							</ul>
+						</div>
+						<div class="col-md-8 cl-info">
+							<div class="cl-title"><a href="{:U('Index/forum?id='.$vo['id'])}">{$vo.title}</a></div>
+							<ul>
+								<li class="col-md-6"><span>地区：</span>{$vo.district|get_district_by_id}</li>
+								<li class="col-md-6"><span>发布时间：</span>{$vo.create_time|date='Y/m/d',###}</li>
+								<li class="col-md-6"><span>行业：</span>{$vo.type_id|get_type_by_id}</li>
+								<li class="col-md-6"><span>发展阶段：</span>{$vo.stage|get_project_config=###,'stage'}</li>
+								<li class="col-md-6"><span>需要合伙人：</span>{$vo.partners|get_project_config=###,'partners'}</li>
+								<li class="col-md-6"><span>投资额度：</span>{$vo.quotas|get_project_config=###,'quotas'}</li>
+							</ul>
+							<div class="cl-intro">{$vo.description}</div>
+						</div>
+					</div>
+					</foreach>
+				</div>
+			
+			</div>
+		</div>
+			<!-- 右边部分 -->
+		<div class="col-md-4 cl_right">
+			<div class="hot_search">
+				<form class="form-horizontal" role="form">
+					<input type="text" class="col-md-8 hot_search_text" placeholder="寻找你想要的...">
+					<button type="submit" class="col-md-3 btn btn-info">搜索</button>
+				</form>
+			</div>
+			<div class="hot-call row">
+				<div class="col-md-11 hot_call_top">热门集结</div>
+				<ul>
+					<li>
+						<img class="cl_hot_img" src="__IMG__/face_row.jpg" alt="">
+						<div class="hot_call_title">
+							<a href="#">创业社交平台</a>
+						</div>
+					</li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</div>
+		</div>
+	
+
+</block>
+<block name="script"><script src="__JS__/call.js"></script></block>
+

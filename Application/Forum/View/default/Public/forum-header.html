@@ -1,0 +1,64 @@
+<link type="text/css" rel="stylesheet" href="__CSS__/forum.css"/>
+<if condition="ACTION_NAME neq 'edit'">
+    <if condition="$forum_id eq 0">
+        <div class="forum_header  text-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <i class="forum_logo_i"></i>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 35px">
+                <div class="col-md-4">
+                    板块总数：{$count.forum}
+                </div>
+                <div class="col-md-4">
+                    主题总数：{$count.post}
+                </div>
+                <div class="col-md-4">
+                    帖子总数：{$count.all}
+                </div>
+            </div>
+            <div class="forum_left_tip">统计</div>
+        </div>
+    <else/>
+        <div class="forum_header text-center">
+	        <div class="row">
+	            <div class="col-md-12">
+	                <a href="{:U('forum/index/forum',array('id'=>$forum['id']))}" class="forum_logo">{$forum.title|op_t}</a>
+	               
+	            </div>
+	            <div class="col-md-12">
+	            	<a href="{:U('usercenter/index/index?uid='.$forum['uid'])}" ><img src="{$forum.uid|get_user_avatar}" class="avatar-img" ></a>
+	            </div> 
+	        </div>
+	        
+	        
+	        <div class="row text-left">
+	        	
+				<div class="col-md-6"><span>地区：</span>{$forum.district|get_district_by_id}</div>
+				<div class="col-md-6"><span>发布时间：</span>{$forum.create_time|date='Y/m/d',###}</div>
+				<div class="col-md-6"><span>行业：</span>{$forum.type_id|get_type_by_id}</div>
+				<div class="col-md-6"><span>发展阶段：</span>{$forum.stage|get_project_config=###,'stage'}</div>
+				<div class="col-md-6"><span>需要合伙人：</span>{$forum.partners|get_project_config=###,'partners'}</div>
+				<div class="col-md-6"><span>投资额度：</span>{$forum.quotas|get_project_config=###,'quotas'}</div>
+				
+	        </div>
+	        
+	        <div class="row text-left">
+	        	
+	        	<div class="col-md-12 ">
+	        		{$forum.description}
+	        	</div>
+	        	
+	        </div>
+	        
+	        <div class="row text-right">
+	        	<div class="col-md-12">
+	        		<a href="javascript:;" data-id="{$forum.id}" class="btn btn-zan do-zan" data-zan="0" >点赞 <em>{$forum.zan}</em></a>
+	        		<a href="javascript:;" data-id="{$forum.id}" class="btn btn-follow do-follow" data-id="{$forum.id}">关注 <em>{$forum.follow}</em></a>
+	        	</div>
+	        	
+	        </div>
+        </div>
+    </if>
+</if>

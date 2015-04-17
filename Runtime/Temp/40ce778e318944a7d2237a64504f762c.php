@@ -1,0 +1,3 @@
+<?php
+//000000000600a:3:{i:0;a:4:{s:8:"nickname";s:5:"ADMIN";s:2:"id";s:1:"1";s:8:"avatar32";s:59:"/Uploads/Avatar/2015-03-29/5517a1b766c3d-05505543_32_32.png";s:10:"search_key";s:5:"ADMIN";}i:1;a:4:{s:8:"nickname";s:4:"rock";s:2:"id";s:2:"58";s:8:"avatar32";s:32:"/Addons/Avatar/default_32_32.jpg";s:10:"search_key";s:8:"rockrock";}i:2;a:4:{s:8:"nickname";s:4:"jack";s:2:"id";s:2:"60";s:8:"avatar32";s:59:"/Uploads/Avatar/2015-03-26/551423d47549a-05505543_32_32.jpg";s:10:"search_key";s:8:"jackjack";}}
+?>

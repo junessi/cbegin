@@ -1,0 +1,72 @@
+<div><a href="javascript:;" class="btn btn-primary btn-release">我来发布资讯</a></div>
+
+<if condition="is_login()" >
+<div class="row">
+	<div class="col-md-12">
+		<div class="user-box">
+			<div class="row">
+				<div class="col-md-3">
+					<p><img src='{$self.avatar128}' width="100%"></p>
+					<p class="user-box-info text-center">{$self.title}</p>
+				</div>
+				<div class="col-md-9 ">
+					<p class="user-box-name">{$self.nickname}</p>
+					<p class="user-box-info">注册日期：{$self.reg_time|date='Y-m-d H:i:s',###}</p>
+					<p class="user-box-info">上次访问：{$self.last_login_time|date='Y-m-d H:i:s',###}</p>
+				</div>
+				
+				<div class="col-md-12">
+					<div class="user-box-count text-center">
+						<div>
+							<p>发布</p>
+							<p><a href="{:U('usercenter/index/news',array('uid'=>$self['uid'],'info_type'=>'release'))}" >{$self.news_count}</a></p>
+						</div>
+						<div>
+							<p>收藏</p>
+							<p><a href="{:U('usercenter/index/news',array('uid'=>$self['uid'],'info_type'=>'collection'))}" >{$self.news_collection}</a></p>
+						</div>
+						<div>
+							<p>评论</p>
+							<p><a href="{:U('usercenter/index/news',array('uid'=>$self['uid'],'info_type'=>'comment'))}" >{$self.news_comment}</a></p>
+						</div>
+					</div>
+				</div>
+				
+				
+			</div>
+		</div>
+	</div>
+</div>
+</if>
+
+<div class="my-news-lists">
+	<p class="my-news-lists-title">浏览最多</p>
+	
+	<ul class="list-group">
+	  <volist name=":get_top_news('view')" id="vo" key="k">
+	  <li class="list-group-item"><a href="{:U('detail?id='.$vo['id'])}" >{$k}.{$vo.title}</a></li>
+	  </volist>
+	</ul>
+	
+	<p class="my-news-lists-title">评论最多</p>
+	
+	<ul class="list-group">
+	  <volist name=":get_top_news('comment')" id="vo" key="k">
+	  <li class="list-group-item"><a href="{:U('detail?id='.$vo['id'])}" >{$k}.{$vo.title}</a></li>
+	  </volist>
+	</ul>
+	<p class="my-news-lists-title"> 收藏最多</p>
+	
+	<ul class="list-group">
+	  <volist name=":get_top_news('collection')" id="vo" key="k">
+	  <li class="list-group-item"><a href="{:U('detail?id='.$vo['id'])}" >{$k}.{$vo.title}</a></li>
+	  </volist>
+	</ul>
+	<p class="my-news-lists-title">赞最多</p>
+	
+	<ul class="list-group">
+	  <volist name=":get_top_news('zan')" id="vo" key="k">
+	  <li class="list-group-item"><a href="{:U('detail?id='.$vo['id'])}" >{$k}.{$vo.title}</a></li>
+	  </volist>
+	</ul>
+</div>

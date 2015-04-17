@@ -1,0 +1,78 @@
+<extend name="Base/common"/>
+<block name="style"><link type="text/css" rel="stylesheet" href="__CSS__/news.css"/></block>
+<block name="breadcrumbs">
+<div class="breadcrumbs ">
+	<div class="container">
+		<h1 class="pull-left">{$category.title}</h1>
+		<ul class="pull-right breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li><a href="/news/">资讯</a></li>
+            <li><a href="/news/{$category['name']}/">{$category.title}</a></li>
+        </ul>
+	</div>
+</div>
+</block>
+
+<block name="body">
+
+	
+		<div class="col-md-8 news-left">
+		
+			<include file="cate-nav" />
+			
+			<foreach name="list" item="vo">
+				<div class="row news-items-box">
+				<div class="col-md-8 news-item-category">{$vo.category_id|get_category_info}</div>
+				<div class="col-md-4 news-item-time text-right">
+					<span >/</span>
+					<span>{$vo['is_original'] ? '原创' : '转载' } / </span>
+					<span>{$vo.create_time|format_news_time}</span>
+				</div>
+				<div class="clearfix"></div>
+				<notempty name="vo.cover_id">
+					<div class="col-md-3"><a href="{:U('detail?id='.$vo['id'])}"><img src="{$vo.cover_id|get_cover=###,'path'}" width="100%"></a></div>
+					<div class="col-md-9">
+						<h2 class="news-item-title">
+							<a href="{:U('detail?id='.$vo['id'])}">{$vo.title}</a>
+						</h2>
+						<p class="news-item-description"><a href="{:U('detail?id='.$vo['id'])}">{$vo.description}</a></p>
+						<p class="news-item-info text-right">
+							<span>阅读量 ：<em>{$vo.view}</em></span>
+							<span>评论量 <a href="{:U('detail?id='.$vo['id'])}#comment" ><i class="fa fa-comment-o"></i>：<em>{$vo.comment}</em></a></span>
+							<span class="rating do-zan" data-id="{$vo.id}" data-zan="0"><i class="star news-zan"></i>：<em>{$vo.zan}</em></span>
+							<span class="collection do-collection" data-id="{$vo.id}">收藏 <i class="heart"></i>：<em>{$vo['collection'] ? $vo['collection'] : 0}</em></span>
+						</p>
+						<p class="text-right"><a href="{:U('detail?id='.$vo['id'])}">查看详情</a></p>
+					</div>
+				<else/>
+					<div class="col-md-3">
+						<a href="{:U('usercenter/index/index?uid='.$vo['uid'])}" ucard="{$vo.uid}"><img src='{$vo.uid|get_user_avatar}' class="avatar-img img-responsive" ></a> 
+					</div>
+					<div class="col-md-9">
+						<h2 class="news-item-title">
+							<a href="{:U('detail?id='.$vo['id'])}">{$vo.title}</a>
+						</h2>
+						<p class="news-item-description"><a href="{:U('detail?id='.$vo['id'])}">{$vo.description}</a></p>
+						<p class="news-item-info text-right">
+							<span>阅读次数 ：<em>{$vo.view}</em></span>
+							<span>评论量 <a href="{:U('detail?id='.$vo['id'])}#comment" ><i class="fa fa-comment-o"></i>：<em>{$vo.comment}</em></a></span>
+							<span class="rating do-zan" data-id="{$vo.id}" data-zan="0">点赞 <i class="star new-zan"></i>：<em>{$vo.zan}</em></span>
+							<span class="collection do-collection" data-id="{$vo.id}">收藏 <i class="heart"></i>：<em>{$vo['collection'] ? $vo['collection'] : 0}</em></span>
+						</p>
+						<p class="text-right"><a href="{:U('detail?id='.$vo['id'])}">查看详情</a></p>
+					</div>
+				</notempty>
+				</div>
+			</foreach>
+			
+			<div class="page">{$page}</div>
+		</div>
+		
+		<div class="col-md-4  news-right">
+			<include file="right-block" />
+		</div>
+
+
+</block>
+
+<block name="script"><script src="__JS__/news.js"></script></block>

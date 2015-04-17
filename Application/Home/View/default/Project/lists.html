@@ -1,0 +1,259 @@
+<extend name="Base/common"/>
+<block name="style"><link type="text/css" rel="stylesheet" href="__CSS__/project.css"/></block>
+<block name="breadcrumbs">
+<div class="breadcrumbs ">
+	<div class="container">
+		<ul class="pull-left nav nav-pills">
+		  <foreach name="categoryNav" item="vo">
+		  <li role="presentation" <eq name="currentCate.id" value="$vo['id']">class="active"</eq> ><a href="/project/{$vo['name']}/">{$vo.title}</a></li>
+		  </foreach>
+		</ul>
+		<ul class="pull-right breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li><a href="/project/">创业集结</a></li>
+            <li><a href="/project/{$category['name']}/">{$category.title}</a></li>
+        </ul>
+	</div>
+</div>
+</block>
+
+<block name="body">
+
+	<div class="col-md-8 news-left">
+		
+		<div class="row">
+		
+			<div class="col-md-9">
+				<div class="dropdown">
+				  <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-region" data-toggle="dropdown" aria-expanded="true">
+				    {$region ? get_district_by_id($region) : '地区'}
+				     <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu dropdown-region-menu" role="menu" aria-labelledby="dropdown-region">
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="{:create_project_url('',array('region'=>'all'))}">全部</a></li>
+				    <volist name=":get_project_region()" id="vo" key="k">
+				    <li role="presentation"><a role="menuitem" tabindex="-1" href="{:create_project_url('',array('region'=>$vo['id']))}">{$vo.name}</a></li>
+				   	</volist>
+				  </ul>
+				</div>
+			</div>
+			
+			<div class="col-md-3">
+				<a href="javascript:;" class="btn btn-release" data-cate="{$category['id']}">发布项目</a>
+			</div>
+			
+			<div class="col-md-12 ">
+				<div class="sel-box">
+					<div class="row sel-item">
+						<div class="col-md-2 sel-item-title">项目行业</div>
+						<div class="col-md-10 sel-item-lists">
+							<a href="{:create_project_url('',array('industry'=>'all'))}" <empty name="param.industry" >class="active"</empty> >全部</a>
+							<volist name=":get_project_sel('industry')" id="vo">
+							<a href="{:create_project_url('',array('industry'=>$vo['id']))}" <eq name="param.industry" value="$vo.id">class="active"</eq> >{$vo.title}</a>
+							</volist>
+						</div>
+					</div>
+					
+					<notempty name="param.industry" >
+					<div class="row sel-item">
+						<div class="col-md-2 sel-item-title">项目方向</div>
+						
+						<div class="col-md-10 sel-item-lists">
+							<a href="{:create_project_url('',array('direction'=>'all'))}" <empty name="param.direction" >class="active"</empty> >全部</a>
+							<volist name=":get_project_tags($param['industry'])" id="vo">
+							<a href="{:create_project_url('',array('direction'=>$vo['id']))}" <eq name="param.direction" value="$vo.id">class="active"</eq> >{$vo.title}</a>
+							</volist>
+							
+						</div>
+					</div></notempty>
+					
+					<div class="row sel-item">
+						<div class="col-md-2 sel-item-title">发展阶段</div>
+						<div class="col-md-10 sel-item-lists">
+							<a href="{:create_project_url('',array('stage'=>'all'))}" <empty name="param.stage" >class="active"</empty> >全部</a>
+							<volist name=":get_project_sel('stage')" id="vo">
+							<a href="{:create_project_url('',array('stage'=>$vo['id']))}" <eq name="param.stage" value="$vo.id">class="active"</eq> >{$vo.title}</a>
+							</volist>
+						</div>
+					</div>
+					
+					<eq name="category.id" value="51">
+					<div class="row sel-item">
+						<div class="col-md-2 sel-item-title">投资来源</div>
+						<div class="col-md-10 sel-item-lists">
+							<a href="{:create_project_url('',array('funds'=>'all'))}" <empty name="param.funds" >class="active"</empty> >全部</a>
+							<volist name=":get_project_sel('funds')" id="vo">
+							<a href="{:create_project_url('',array('funds'=>$vo['id']))}" <eq name="param.funds" value="$vo.id">class="active"</eq>>{$vo.title}</a>
+							</volist>
+						</div>
+					</div>
+					
+					<div class="row sel-item">
+						<div class="col-md-2 sel-item-title">投资额度</div>
+						<div class="col-md-10 sel-item-lists">
+							<a href="{:create_project_url('',array('quotas'=>'all'))}" <empty name="param.quotas" >class="active"</empty> >全部</a>
+							<volist name=":get_project_sel('quotas')" id="vo">
+							<a href="{:create_project_url('',array('quotas'=>$vo['id']))}" <eq name="param.quotas" value="$vo.id">class="active"</eq>>{$vo.title}</a>
+							</volist>
+						</div>
+					</div>
+					
+					<div class="row sel-item">
+						<div class="col-md-2 sel-item-title">需要合伙</div>
+						<div class="col-md-10 sel-item-lists">
+							<a href="{:create_project_url('',array('partners'=>'all'))}" <empty name="param.partners" >class="active"</empty> >全部</a>
+							<volist name=":get_project_sel('partners')" id="vo">
+							<a href="{:create_project_url('',array('partners'=>$vo['id']))}" <eq name="param.partners" value="$vo.id">class="active"</eq> >{$vo.title}</a>
+							</volist>
+						</div>
+					</div>
+					
+					<div class="row sel-item">
+						<div class="col-md-2 sel-item-title">合伙方式</div>
+						<div class="col-md-10 sel-item-lists">
+							<a href="{:create_project_url('',array('partners_mode'=>'all'))}" <empty name="param.partners_mode" >class="active"</empty> >全部</a>
+							<volist name=":get_project_sel('partners_mode')" id="vo">
+							<a href="{:create_project_url('',array('partners_mode'=>$vo['id']))}" <eq name="param.partners_mode" value="$vo.id">class="active"</eq> >{$vo.title}</a>
+							</volist>
+						</div>
+					</div>
+					</eq>
+				</div>
+			
+			</div>
+			
+			<div class="col-md-12">
+				<div class="projiect-order">
+					<div class="btn-group" role="group" >
+					  <button type="button" class="btn btn-default <empty name='order' >btn-active</empty>"><a href="{:create_project_url('',array('order'=>'all'))}" >综合</a></button>
+					  <button type="button" class="btn btn-default <eq name='order' value='create_time'>btn-active</eq>"><a href="{:create_project_url('',array('order'=>'create_time'))}" >最新发布</a></button>
+					  <button type="button" class="btn btn-default <eq name='order' value='zan'>btn-active</eq>"><a href="{:create_project_url('',array('order'=>'zan'))}" >最受欢迎</a></button>
+					  <button type="button" class="btn btn-default <eq name='order' value='comment'>btn-active</eq>"><a href="{:create_project_url('',array('order'=>'comment'))}" >最多讨论</a></button>
+					  <button type="button" class="btn btn-default <eq name='order' value='collection'>btn-active</eq>"><a href="{:create_project_url('',array('order'=>'collection'))}" >最多关注</a></button>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="row">
+		
+			<foreach name="list" item="vo">
+				<div class="col-md-12  ">
+					<div class="project-item-lists">
+						<div class="row">
+							<div class="col-md-3">
+							<eq name="category.id" value="51">
+							<img src="{$vo.logo_img|get_cover=###,'path'}" class="avatar-img" width="100%" >
+							</eq>
+							<eq name="category.id" value="52">
+							<img src="{$vo.uid|get_user_avatar}" class="avatar-img" width="100%" >
+							</eq>
+							</div>
+							<div class="col-md-9">
+								<div class="project-item-title"><a href="{:U('detail?id='.$vo['id'])}" >{$vo.title}</a></div>
+								<div class="row">
+									<div class="project-item-sel-info col-md-6"><span>发布时间:</span><span class="info-detail">{$vo.create_time|date='Y-m-d',###}</span> </div>
+									<div class="project-item-sel-info col-md-6"><span>所属区域:</span> <span class="info-detail">{$vo.region|get_district_by_id}</span></div>
+									<div class="project-item-sel-info col-md-6"><span>项目行业:</span> <span class="info-detail">{$vo.industry|get_project_config=###,'industry'}</span></div>
+									<div class="project-item-sel-info col-md-6"><span>发展阶段:</span> <span class="info-detail">{$vo.stage|get_project_config=###,'stage'}</span> </div>
+									<eq name="category.id" value="51">
+										<div class="project-item-sel-info col-md-6"><span>投资额度:</span> <span class="info-detail">{$vo.quotas|get_project_config=###,'quotas'}</span></div>
+										<div class="project-item-sel-info col-md-6"><span>投资来源:</span> <span class="info-detail">{$vo.funds|get_project_config=###,'funds'}</span></div>
+										<div class="project-item-sel-info col-md-6"><span>需要合伙人:</span> <span class="info-detail">{$vo.partners|get_project_config=###,'partners'}</span></div>
+										<div class="project-item-sel-info col-md-6"><span>合作方式:</span> <span class="info-detail">{$vo.partners_mode|get_project_config=###,'partners_mode'}</span></div>
+									</eq>
+									<eq name="category.id" value="52">
+										<div class="project-item-sel-info col-md-6"><span>投资额度:</span> <span class="info-detail">{$vo.invest_quotas}</span></div>
+									</eq>
+								</div>
+							</div>
+							
+							<div class="col-md-12">
+								<div class="project-item-descrition project-item-descrition-{$vo.id}">
+									<span>项目描述:</span> 
+									<span class="info-detail">
+									<a href="{:U('detail?id='.$vo['id'])}" >{$vo.description}</a>
+									<a href="javascript:;" class="view-more" data-id="{$vo.id}">更多</a>
+									</span>
+								</div>
+								<div class="project-item-content project-item-content-{$vo.id} hide">
+									<div class="project-item-content-detail-{$vo.id}"></div>
+									<div class="text-right"><a href="javascript:;" class="view-close" data-id="{$vo.id}">收起</a></div>
+								</div>
+							</div>
+							
+							<div class="col-md-12">
+								<div class="project-item-social pull-left">
+									<div class="btn-group" role="group" >
+										<a href="{:U('detail?id='.$vo['id'])}#comment" class="btn btn-info">讨论:<em>{$vo.comment}</em></a>
+										<button type="button" class="btn btn-danger do-zan" data-zan="0" data-id="{$vo.id}">支持:<em>{$vo.zan}</em></button>
+										<button type="button" class="btn btn-warning do-collection" data-id="{$vo.id}">关注:<em>{$vo.collection}</em></button>
+									</div>
+								</div>
+								<div class="project-item-more pull-right">
+									<a href="{:U('detail?id='.$vo['id'])}" class="btn">查看详情</a>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</foreach>
+		</div>
+		
+		<div class="page">{$page}</div>
+	</div>
+	
+	<div class="col-md-4">
+		<include file="right-block" />
+	</div>
+	
+	<div class="modal fade" id="myModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">发布项目</h4>
+	      </div>
+	      <div class="modal-body text-center">
+	      </div>
+	      <div class="modal-footer">
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+</block>
+
+<block name="script">
+<script src="__JS__/project.js"></script>
+<script>
+$(function (){
+	$('.view-more').click(function (){
+		var id = $(this).attr('data-id');
+		var content = $(".project-item-content-detail-"+id).html();
+		if(content == ""){
+			$.post("{:U('getProjectContent')}",{id:id},function (data){
+				$(".project-item-content-detail-"+id).html(data);
+				$('.project-item-descrition-'+id).addClass('hide');
+				$('.project-item-content-'+id).removeClass('hide');
+			} ,'text');
+		}
+		else{
+			$('.project-item-descrition-'+id).addClass('hide');
+			$('.project-item-content-'+id).removeClass('hide');
+		}
+		
+	});
+	
+	$('.view-close').click(function (){
+		var id = $(this).attr('data-id');
+		$('.project-item-descrition-'+id).removeClass('hide');
+		$('.project-item-content-'+id).addClass('hide');
+	});
+});
+
+</script>
+
+</block>
